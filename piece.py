@@ -1,9 +1,11 @@
 
+
+VIDE='.'
+SimplifiedNamePiece=(VIDE,'r','d','t','c','f','p')
+NamePiece=(VIDE,'ROI','DAME','TOUR','CAVALIER','FOU','PION')
+
 class Piece(object):
 
-    VIDE='.'
-
-    NamePiece=(VIDE,'ROI','DAME','TOUR','CAVALIER','FOU','PION')
     valuePiece=(0,0,9,5,3,3,1)
 
     tab120 = (
@@ -38,9 +40,16 @@ class Piece(object):
 
     def __init__(self, name=VIDE, color=''):
         self.name = name
-        self.value = self.valuePiece[self.NamePiece.index(name)]
+        self.value = self.valuePiece[NamePiece.index(name)]
         self.color = color
     
+    def getSimplifiedPiece(board, case):
+        name = SimplifiedNamePiece[NamePiece.index(board.cases[case].name)]
+        color = board.cases[case].color
+        if color == "blanc":
+            name = name.upper()
+        return name
+
 
     def isEmpty(self):        
         return (self.nom==self.VIDE)

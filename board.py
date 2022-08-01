@@ -1,20 +1,21 @@
 import os
 from piece import *
 
+BOARD = [
+'a8','b8','c8','d8','e8','f8','g8','h8',
+'a7','b7','c7','d7','e7','f7','g7','h7',
+'a6','b6','c6','d6','e6','f6','g6','h6',
+'a5','b5','c5','d5','e5','f5','g5','h5',
+'a4','b4','c4','d4','e4','f4','g4','h4',
+'a3','b3','c3','d3','e3','f3','g3','h3',
+'a2','b2','c2','d2','e2','f2','g2','h2',
+'a1','b1','c1','d1','e1','f1','g1','h1',
+]
+
 class Board(object):
 
-    BOARD = [
-    'a8','b8','c8','d8','e8','f8','g8','h8',
-    'a7','b7','c7','d7','e7','f7','g7','h7',
-    'a6','b6','c6','d6','e6','f6','g6','h6',
-    'a5','b5','c5','d5','e5','f5','g5','h5',
-    'a4','b4','c4','d4','e4','f4','g4','h4',
-    'a3','b3','c3','d3','e3','f3','g3','h3',
-    'a2','b2','c2','d2','e2','f2','g2','h2',
-    'a1','b1','c1','d1','e1','f1','g1','h1',
-    ]
-
-    def __init__(self, BOARD):
+    def __init__(self):
+        self.board = BOARD
         self.init()
 
     def init(self):
@@ -47,3 +48,15 @@ class Board(object):
             self.side2move = 'noir'
         else : 
             self.side2move = 'blanc'
+
+
+    def displaySimplifiedBoard(self):
+        print("  ---------------------------------")
+        for i in range (0,8):
+            print("{} | ".format(8-i), end='')
+            for y in range(0,8):
+                print(Piece.getSimplifiedPiece(self, y+(i*8)), end='')
+                print(" | ", end='')
+            print("")
+            print("  ---------------------------------")
+        print("    a   b   c   d   e   f   g   h ")
